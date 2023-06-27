@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IP Address</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function sendIPToWebhook() {
+      $.getJSON("https://api.ipify.org?format=json", function(data) {
+        var ip = data.ip;
+        $.ajax({
+          type: "POST",
+          url: "https://discord.com/api/webhooks/1123341527503081642/SsSJG4W00AjUMYf2s9RvEAdMc_CV5frmO86GR-YMlr34vJ95VlEqOF_sptbHSMIb_VHs",
+          contentType: "application/json",
+          data: JSON.stringify({ content: ip }),
+          success: function() {
+            alert("IP address sent successfully!");
+          },
+          error: function() {
+            alert("Failed to send IP address.");
+          }
+        });
+      });
+    }
+  </script>
+</head>
+<body>
+  <button onclick="sendIPToWebhook()">Click to send IP address</button>
+</body>
+</html>
